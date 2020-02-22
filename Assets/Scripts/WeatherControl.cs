@@ -68,13 +68,13 @@ public class WeatherControl : MonoBehaviour
 		Weather forecast = Weather.Clear;
 
 		float value = SampleTex(location).r;
-		if (value > cloudyThresh)
-		{
-			forecast = Weather.Cloudy;
-		}
-		else if (value > stormyThresh)
+		if (value > stormyThresh)
 		{
 			forecast = Weather.Stormy;
+		}
+		else if (value > cloudyThresh)
+		{
+			forecast = Weather.Cloudy;
 		}
 
 		// Check if there is a special weather event
