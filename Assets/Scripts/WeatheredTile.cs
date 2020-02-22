@@ -13,8 +13,6 @@ public class WeatheredTile : TileBase
 	public Sprite m_stormy;
 	public Sprite m_lightning;
 
-	public WeatherControl m_weatherControl;
-
 	public override void RefreshTile(Vector3Int location, ITilemap tilemap)
 	{
 		tilemap.RefreshTile(location);
@@ -33,16 +31,52 @@ public class WeatheredTile : TileBase
 			case Weather.Lightning:
 				tileData.sprite = m_lightning;
 				break;
-			default:
+			default: // Default to clear
 			case Weather.Clear:
 				tileData.sprite = m_clear;
 				break;
 		}
 	}
 
-	private Weather GetWeather(Vector3Int location, ITilemap tilemap)
+	private int Convert(int input, int in_min, int in_max, int out_min, int out_max)
 	{
-		// TODO: Implement me.
-		return Weather.Clear;
+		return out_min + ((out_max - out_min) / (in_max - in_min)) * (input - in_min);
+	}
+
+	private Weather GetWeather(Vector3Int location, ITilemap itilemap)
+	{
+		var tilemap = itilemap.GetComponent<Tilemap>();
+		var weatherControl = tilemap.transform.parent.gameObject
+			.GetComponentInChildren<WeatherControl>();
+
+		var bounds = tilemap.cellBounds;
+		var convert = new Vector3Int();
+		convert.x = Convert(location.x, bounds.min.x, bounds.max.x, 0, weatherControl.pixWidth);
+		convert.y = Convert(location.y, bounds.min.y, bounds.max.y, 0, weatherControl.pixHeight);
+
+		var color = weatherControl.SampleTex(convert);
+		float value = color.r;
+
+		// Determine the weather forecast
+		Weather forecast = Weather.Clear;
+		if (value > 0.9)
+		{
+			forecast = Weather.Stormy;
+		}
+		else if (value > 0.5)
+		{
+			forecast = Weather.Cloudy;
+		}
+
+		// Check if there is a special weather event
+		if (forecast == Weather.Stormy)
+		{
+			if (Random.value <= 0.33)
+			{
+				return Weather.Lightning;
+			}
+		}
+
+		return forecast;
 	}
 }

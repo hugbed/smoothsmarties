@@ -54,6 +54,11 @@ public class WeatherControl : MonoBehaviour
 		noiseTex.Apply();
 	}
 
+	public Color SampleTex(Vector3Int location)
+	{
+		return pix[location.y * noiseTex.width + location.x];
+	}
+
 	void AdvanceTurn()
 	{
 		// TODO: To be implemented
