@@ -61,4 +61,16 @@ public class GameController : MonoBehaviour
             weather.AdvanceTurn();
         }
     }
+
+    public void returnToMenu()
+    {
+        ui.showGameEnd(false);
+        ui.showMenu(true);
+        ui.showGameUI(false);
+
+        if (boardInstance != null)
+        {
+            GameObject.Destroy(boardInstance);
+        }
+    }
 }
