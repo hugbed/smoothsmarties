@@ -11,6 +11,9 @@ public class UIController : MonoBehaviour
     [SerializeField]
     private GameObject gameEnd;
 
+    [SerializeField]
+    private TMPro.TextMeshProUGUI turnNumberText;
+
     public void showMenu(bool show)
     {
         // Can replace for anything else (like animation or something)
@@ -24,5 +27,10 @@ public class UIController : MonoBehaviour
     public void showGameEnd(bool show)
     {
         gameEnd.SetActive(show);
+    }
+
+    public void setTurnNumberText(int turn, int totalTurns)
+    {
+        turnNumberText.text = (turn + 1).ToString() + "/" + (totalTurns).ToString();
     }
 }
