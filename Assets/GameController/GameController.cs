@@ -54,7 +54,7 @@ public class GameController : MonoBehaviour
         else
         {
             var weather = boardInstance.GetComponentInChildren<WeatherControl>(true);
-            weather.AdvanceTurn();
+            weather.Step();
         }
     }
 

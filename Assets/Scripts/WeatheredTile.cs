@@ -49,10 +49,13 @@ public class WeatheredTile : TileBase
 		var weatherControl = tilemap.transform.parent.gameObject
 			.GetComponentInChildren<WeatherControl>();
 
+		if (weatherControl == null)
+			return Weather.Clear; // No weather control instance while in editor
+
 		var bounds = tilemap.cellBounds;
 		var convert = new Vector3Int();
-		convert.x = Convert(location.x, bounds.min.x, bounds.max.x, 0, weatherControl.pixWidth);
-		convert.y = Convert(location.y, bounds.min.y, bounds.max.y, 0, weatherControl.pixHeight);
+		convert.x = Convert(location.x, bounds.min.x, bounds.max.x, 0, weatherControl.noiseWidth);
+		convert.y = Convert(location.y, bounds.min.y, bounds.max.y, 0, weatherControl.noiseHeight);
 
 		var color = weatherControl.SampleTex(convert);
 		float value = color.r;

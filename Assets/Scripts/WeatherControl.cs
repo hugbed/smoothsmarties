@@ -5,81 +5,61 @@ using UnityEngine.Tilemaps;
 
 public class WeatherControl : MonoBehaviour
 {
-	 // Width and height of the texture in pixels.
-	public int pixWidth;
-	public int pixHeight;
-
-	// The origin of the sampled area in the plane.
-	public float xOrg;
-	public float yOrg;
-
-	public Tilemap tilemap;
-
-	// The number of cycles of the basic noise pattern that are repeated
-	// over the width and height of the texture.
-	public float scale = 1.0F;
+	// Noise generation
+	public int noiseWidth;
+	public int noiseHeight;
+	public Vector2 noiseOrigin;
+	public float noiseScale = 1.0F;
 
 	private Texture2D noiseTex;
-	private Color[] pix;
-	private Renderer rend;
+	private Color[] noisePix;
+	private Renderer noiseRenderer;
 
 	void Awake()
 	{
-		rend = GetComponent<Renderer>();
-
-		// Set up the texture and a Color array to hold pixels during processing.
-		noiseTex = new Texture2D(pixWidth, pixHeight);
-		pix = new Color[noiseTex.width * noiseTex.height];
-		rend.material.mainTexture = noiseTex;
-
-		CalcNoise();
+		noiseRenderer = GetComponent<Renderer>();
+		noiseTex = new Texture2D(noiseWidth, noiseHeight);
+		noisePix = new Color[noiseTex.width * noiseTex.height];
+		noiseRenderer.material.mainTexture = noiseTex;
+		ComputeNoise(); // Compute initial noise texture
 	}
 
-	private void Update()
-	{
-		tilemap.RefreshAllTiles();
-	}
-
-	private void CalcNoise()
+	private void ComputeNoise()
 	{
 		// For each pixel in the texture...
 		float y = 0.0F;
-
 		while (y < noiseTex.height)
 		{
 			float x = 0.0F;
 			while (x < noiseTex.width)
 			{
-				float xCoord = xOrg + x / noiseTex.width * scale;
-				float yCoord = yOrg + y / noiseTex.height * scale;
+				float xCoord = noiseOrigin.x + x / noiseTex.width * noiseScale;
+				float yCoord = noiseOrigin.y + y / noiseTex.height * noiseScale;
 				float sample = Mathf.PerlinNoise(xCoord, yCoord);
-				pix[(int)y * noiseTex.width + (int)x] = new Color(sample, sample, sample);
+				noisePix[(int)y * noiseTex.width + (int)x] = new Color(sample, sample, sample);
 				x++;
 			}
 			y++;
 		}
 
 		// Copy the pixel data to the texture and load it into the GPU.
-		noiseTex.SetPixels(pix);
+		noiseTex.SetPixels(noisePix);
 		noiseTex.Apply();
 	}
 
 	public Color SampleTex(Vector3Int location)
 	{
-#if UNITY_EDITOR
-		if (pix == null)
-			return new Color(0.0f, 0.0f, 0.0f);
-#endif
+		if (noisePix == null)
+			return new Color(0.0f, 0.0f, 0.0f); // May not be initialized in editor
 
-		return pix[location.y * noiseTex.width + location.x];
+		return noisePix[location.y * noiseTex.width + location.x];
 	}
 
-	public void AdvanceTurn()
+	public void Step()
 	{
-		// TODO: To be implemented
-		xOrg += 1;
-		yOrg += 1;
-
-		CalcNoise();
+		// TODO: Smoother stepping?
+		noiseOrigin.x += 1;
+		noiseOrigin.y += 1;
+		ComputeNoise();
 	}
 }
