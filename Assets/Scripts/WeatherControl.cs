@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class WeatherControl : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class WeatherControl : MonoBehaviour
 	public float xOrg;
 	public float yOrg;
 
+	public Tilemap tilemap;
+
 	// The number of cycles of the basic noise pattern that are repeated
 	// over the width and height of the texture.
 	public float scale = 1.0F;
@@ -22,7 +25,7 @@ public class WeatherControl : MonoBehaviour
 
 	public bool initialized = false;
 
-	void Start()
+	void Awake()
 	{
 		if (!initialized)
 		{
@@ -43,6 +46,12 @@ public class WeatherControl : MonoBehaviour
 
 		initialized = true;
 	}
+
+	private void Update()
+	{
+		tilemap.RefreshAllTiles();
+	}
+
 	private void CalcNoise()
 	{
 		// For each pixel in the texture...
@@ -69,6 +78,11 @@ public class WeatherControl : MonoBehaviour
 
 	public Color SampleTex(Vector3Int location)
 	{
+#if UNITY_EDITOR
+		if (pix == null)
+			return new Color(0.0f, 0.0f, 0.0f);
+#endif
+
 		return pix[location.y * noiseTex.width + location.x];
 	}
 

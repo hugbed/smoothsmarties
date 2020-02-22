@@ -97,7 +97,9 @@ MonoBehaviour:
   pixHeight: 100
   xOrg: 0
   yOrg: 0
+  tilemap: {fileID: 7483507559879591431}
   scale: 1
+  initialized: 0
 --- !u!1 &7483507559601601574
 GameObject:
   m_ObjectHideFlags: 0
