@@ -30,7 +30,7 @@ public class WeatherControl : MonoBehaviour
 		rend.material.mainTexture = noiseTex;
 	}
 
-	void CalcNoise()
+	private void CalcNoise()
 	{
 		// For each pixel in the texture...
 		float y = 0.0F;
@@ -54,8 +54,17 @@ public class WeatherControl : MonoBehaviour
 		noiseTex.Apply();
 	}
 
+	void AdvanceTurn()
+	{
+		// TODO: To be implemented
+	}
+
 	void Update()
 	{
-		CalcNoise();
+		// TODO: Hook to UI next turn button
+		if (Input.GetMouseButtonDown(0))
+		{
+			AdvanceTurn();
+		}
 	}
 }
