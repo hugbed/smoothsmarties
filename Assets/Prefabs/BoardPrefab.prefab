@@ -96,11 +96,11 @@ MonoBehaviour:
   noiseWidth: 100
   noiseHeight: 100
   noiseOrigin: {x: 0, y: 0}
-  noiseScale: 2
-  noiseStep: {x: 0.5, y: 0.5}
-  cloudyThresh: 0.5
-  stormyThresh: 0.7
-  lightningChance: 0.3
+  noiseScale: 7
+  noiseStep: {x: 0.25, y: -0.25}
+  cloudyThresh: 0.4
+  stormyThresh: 0.45
+  lightningTresh: 0.47
 --- !u!1 &7483507559601601574
 GameObject:
   m_ObjectHideFlags: 0

@@ -20,7 +20,7 @@ public class WeatherControl : MonoBehaviour
 	// Random values for weather
 	public float cloudyThresh;
 	public float stormyThresh;
-	public float lightningChance;
+	public float lightningTresh;
 
 	void Awake()
 	{
@@ -66,24 +66,19 @@ public class WeatherControl : MonoBehaviour
 	{
 		// Determine the weather forecast
 		Weather forecast = Weather.Clear;
-
 		float value = SampleTex(location).r;
-		if (value > stormyThresh)
+
+		if (value > lightningTresh)
+		{
+			forecast = Weather.Lightning;
+		}
+		else if (value > stormyThresh)
 		{
 			forecast = Weather.Stormy;
 		}
 		else if (value > cloudyThresh)
 		{
 			forecast = Weather.Cloudy;
-		}
-
-		// Check if there is a special weather event
-		if (forecast == Weather.Stormy)
-		{
-			if (Random.value < lightningChance)
-			{
-				return Weather.Lightning;
-			}
 		}
 
 		return forecast;

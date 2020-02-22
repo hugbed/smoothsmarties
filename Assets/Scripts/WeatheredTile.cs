@@ -45,6 +45,9 @@ public class WeatheredTile : TileBase
 
 	private Weather GetWeather(Vector3Int location, ITilemap itilemap)
 	{
+		if (name == "WOutsideTile")
+			return Weather.Clear; // Y fait tout le temps beau sul bord
+
 		var tilemap = itilemap.GetComponent<Tilemap>();
 		var weather = tilemap.transform.parent.gameObject
 			.GetComponentInChildren<WeatherControl>();
