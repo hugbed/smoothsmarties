@@ -54,10 +54,6 @@ public class GameController : MonoBehaviour
         else
         {
             var weather = boardInstance.GetComponentInChildren<WeatherControl>(true);
-            if (!weather.initialized)
-            {
-                weather.initialize();
-            }
             weather.AdvanceTurn();
         }
     }

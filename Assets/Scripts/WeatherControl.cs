@@ -23,17 +23,7 @@ public class WeatherControl : MonoBehaviour
 	private Color[] pix;
 	private Renderer rend;
 
-	public bool initialized = false;
-
 	void Awake()
-	{
-		if (!initialized)
-		{
-			initialize();
-		}
-	}
-
-	public void initialize()
 	{
 		rend = GetComponent<Renderer>();
 
@@ -43,8 +33,6 @@ public class WeatherControl : MonoBehaviour
 		rend.material.mainTexture = noiseTex;
 
 		CalcNoise();
-
-		initialized = true;
 	}
 
 	private void Update()
