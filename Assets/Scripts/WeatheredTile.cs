@@ -55,6 +55,9 @@ public class WeatheredTile : TileBase
 		if (weather == null)
 			return Weather.Clear; // No weather control instance while in editor
 
+		if (!weather.IsForecasting())
+			return Weather.Clear; // No weather display during setup phase
+
 		// Convert from tilemap to noise map coordinates
 		var bounds = tilemap.cellBounds;
 		var converted = new Vector3Int();

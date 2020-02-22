@@ -22,6 +22,8 @@ public class WeatherControl : MonoBehaviour
 	public float stormyThresh;
 	public float lightningTresh;
 
+	private bool forecasting = false;
+
 	void Awake()
 	{
 		noiseRenderer = GetComponent<Renderer>();
@@ -89,5 +91,15 @@ public class WeatherControl : MonoBehaviour
 		noiseOrigin.x += noiseStep.x;
 		noiseOrigin.y += noiseStep.y;
 		ComputeNoise();
+	}
+
+	public void StartForecasting()
+	{
+		forecasting = true;
+	}
+
+	public bool IsForecasting()
+	{
+		return forecasting;
 	}
 }

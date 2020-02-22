@@ -33,6 +33,13 @@ public class GameController : MonoBehaviour
 
     public void nextTurn()
     {
+        var weather = boardInstance.GetComponentInChildren<WeatherControl>(true);
+        if (turn == 0)
+        {
+            // FIXME: First turn nothing happens
+            weather.StartForecasting();
+        }
+
         turn++;
 
         if (turn >= 0 && turn < numberOfTurns)
@@ -48,7 +55,6 @@ public class GameController : MonoBehaviour
         }
         else
         {
-            var weather = boardInstance.GetComponentInChildren<WeatherControl>(true);
             weather.Step();
         }
     }
