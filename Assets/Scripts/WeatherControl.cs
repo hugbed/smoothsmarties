@@ -6,14 +6,21 @@ using UnityEngine.Tilemaps;
 public class WeatherControl : MonoBehaviour
 {
 	// Noise generation
-	public int noiseWidth;
-	public int noiseHeight;
+	public int noiseWidth = 100;
+	public int noiseHeight = 100;
 	public Vector2 noiseOrigin;
 	public float noiseScale = 1.0F;
 
 	private Texture2D noiseTex;
 	private Color[] noisePix;
 	private Renderer noiseRenderer;
+
+	public Vector2 noiseStep = new Vector2(1.0F, 1.0F);
+
+	// Random values for weather
+	public float cloudyThresh;
+	public float stormyThresh;
+	public float lightningChance;
 
 	void Awake()
 	{
@@ -47,7 +54,7 @@ public class WeatherControl : MonoBehaviour
 		noiseTex.Apply();
 	}
 
-	public Color SampleTex(Vector3Int location)
+	Color SampleTex(Vector3Int location)
 	{
 		if (noisePix == null)
 			return new Color(0.0f, 0.0f, 0.0f); // May not be initialized in editor
@@ -55,11 +62,37 @@ public class WeatherControl : MonoBehaviour
 		return noisePix[location.y * noiseTex.width + location.x];
 	}
 
+	public Weather GetWeather(Vector3Int location)
+	{
+		// Determine the weather forecast
+		Weather forecast = Weather.Clear;
+
+		float value = SampleTex(location).r;
+		if (value > cloudyThresh)
+		{
+			forecast = Weather.Cloudy;
+		}
+		else if (value > stormyThresh)
+		{
+			forecast = Weather.Stormy;
+		}
+
+		// Check if there is a special weather event
+		if (forecast == Weather.Stormy)
+		{
+			if (Random.value < lightningChance)
+			{
+				return Weather.Lightning;
+			}
+		}
+
+		return forecast;
+	}
+
 	public void Step()
 	{
-		// TODO: Smoother stepping?
-		noiseOrigin.x += 1;
-		noiseOrigin.y += 1;
+		noiseOrigin.x += noiseStep.x;
+		noiseOrigin.y += noiseStep.y;
 		ComputeNoise();
 	}
 }

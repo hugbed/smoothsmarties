@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class UIController : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject menu;
-    [SerializeField]
-    private GameObject gameUI;
-    [SerializeField]
-    private GameObject gameEnd;
+    public GameObject menu;
+    public GameObject gameUI;
+    public GameObject gameEnd;
 
-    [SerializeField]
-    private TMPro.TextMeshProUGUI turnNumberText;
+    public TMPro.TextMeshProUGUI turnNumberText;
 
     public void showMenu(bool show)
     {

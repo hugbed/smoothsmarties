@@ -46,40 +46,18 @@ public class WeatheredTile : TileBase
 	private Weather GetWeather(Vector3Int location, ITilemap itilemap)
 	{
 		var tilemap = itilemap.GetComponent<Tilemap>();
-		var weatherControl = tilemap.transform.parent.gameObject
+		var weather = tilemap.transform.parent.gameObject
 			.GetComponentInChildren<WeatherControl>();
 
-		if (weatherControl == null)
+		if (weather == null)
 			return Weather.Clear; // No weather control instance while in editor
 
+		// Convert from tilemap to noise map coordinates
 		var bounds = tilemap.cellBounds;
-		var convert = new Vector3Int();
-		convert.x = Convert(location.x, bounds.min.x, bounds.max.x, 0, weatherControl.noiseWidth);
-		convert.y = Convert(location.y, bounds.min.y, bounds.max.y, 0, weatherControl.noiseHeight);
+		var converted = new Vector3Int();
+		converted.x = Convert(location.x, bounds.min.x, bounds.max.x, 0, weather.noiseWidth);
+		converted.y = Convert(location.y, bounds.min.y, bounds.max.y, 0, weather.noiseHeight);
 
-		var color = weatherControl.SampleTex(convert);
-		float value = color.r;
-
-		// Determine the weather forecast
-		Weather forecast = Weather.Clear;
-		if (value > 0.9)
-		{
-			forecast = Weather.Stormy;
-		}
-		else if (value > 0.5)
-		{
-			forecast = Weather.Cloudy;
-		}
-
-		// Check if there is a special weather event
-		if (forecast == Weather.Stormy)
-		{
-			if (Random.value <= 0.33)
-			{
-				return Weather.Lightning;
-			}
-		}
-
-		return forecast;
+		return weather.GetWeather(converted);
 	}
 }

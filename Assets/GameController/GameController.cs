@@ -4,17 +4,12 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    [SerializeField]
-    private UIController ui;
+    public UIController ui;
 
     private int turn = 0;
+    public int numberOfTurns = 10;
 
-    [SerializeField]
-    private int numberOfTurns = 10;
-
-    [SerializeField]
-    private GameObject boardPrefab;
-
+    public GameObject boardPrefab;
     private GameObject boardInstance;
 
     // Start is called before the first frame update
