@@ -132,15 +132,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Board
       objectReference: {fileID: 0}
+    - target: {fileID: 7483507559601601575, guid: fe8b60851f4239a458a48e77be3e4efe,
+        type: 3}
+      propertyPath: m_CellSize.y
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 7483507559601601575, guid: fe8b60851f4239a458a48e77be3e4efe,
+        type: 3}
+      propertyPath: m_CellSize.x
+      value: 0.733
+      objectReference: {fileID: 0}
     - target: {fileID: 7483507559601601576, guid: fe8b60851f4239a458a48e77be3e4efe,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.25
+      value: -0.13
       objectReference: {fileID: 0}
     - target: {fileID: 7483507559601601576, guid: fe8b60851f4239a458a48e77be3e4efe,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.37
+      value: -0.36
       objectReference: {fileID: 0}
     - target: {fileID: 7483507559601601576, guid: fe8b60851f4239a458a48e77be3e4efe,
         type: 3}
@@ -242,7 +252,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 2
+  orthographic size: 1.84
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
