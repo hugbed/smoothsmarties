@@ -20,7 +20,17 @@ public class WeatherControl : MonoBehaviour
 	private Color[] pix;
 	private Renderer rend;
 
+	public bool initialized = false;
+
 	void Start()
+	{
+		if (!initialized)
+		{
+			initialize();
+		}
+	}
+
+	public void initialize()
 	{
 		rend = GetComponent<Renderer>();
 
@@ -28,8 +38,11 @@ public class WeatherControl : MonoBehaviour
 		noiseTex = new Texture2D(pixWidth, pixHeight);
 		pix = new Color[noiseTex.width * noiseTex.height];
 		rend.material.mainTexture = noiseTex;
-	}
 
+		CalcNoise();
+
+		initialized = true;
+	}
 	private void CalcNoise()
 	{
 		// For each pixel in the texture...
@@ -59,17 +72,12 @@ public class WeatherControl : MonoBehaviour
 		return pix[location.y * noiseTex.width + location.x];
 	}
 
-	void AdvanceTurn()
+	public void AdvanceTurn()
 	{
 		// TODO: To be implemented
-	}
+		xOrg += 1;
+		yOrg += 1;
 
-	void Update()
-	{
-		// TODO: Hook to UI next turn button
-		if (Input.GetMouseButtonDown(0))
-		{
-			AdvanceTurn();
-		}
+		CalcNoise();
 	}
 }
