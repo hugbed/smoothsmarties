@@ -15,10 +15,14 @@ public class GameController : MonoBehaviour
 
     private GameObject boardInstance = null;
 
-    // Start is called before the first frame update
+    void Start()
+    {
+        AudioController.GetSource("/Audio/MenuLoop").Play();
+    }
 
     public void newGame()
     {
+        StartCoroutine(AudioController.FadeOut(AudioController.GetSource("/Audio/MenuLoop"), 0.1f));
         AudioController.GetSource("/Audio/GenericButton").Play();
 
         if (boardInstance != null)
@@ -92,6 +96,7 @@ public class GameController : MonoBehaviour
 
     public void returnToMenu()
     {
+        AudioController.GetSource("/Audio/MenuLoop").Play();
         ui.showGameEnd(false);
         ui.showMenu(true);
         ui.showGameUI(false);
