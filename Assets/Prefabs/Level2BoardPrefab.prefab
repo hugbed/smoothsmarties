@@ -3045,12 +3045,12 @@ PrefabInstance:
     - target: {fileID: 7488665586501474142, guid: fe8b60851f4239a458a48e77be3e4efe,
         type: 3}
       propertyPath: stormyThresh
-      value: 0.6
+      value: 0.57
       objectReference: {fileID: 0}
     - target: {fileID: 7488665586501474142, guid: fe8b60851f4239a458a48e77be3e4efe,
         type: 3}
       propertyPath: lightningTresh
-      value: 0.68
+      value: 0.6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe8b60851f4239a458a48e77be3e4efe, type: 3}
