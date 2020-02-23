@@ -65,9 +65,9 @@ public class WeatheredTile : TileBase
 				world.z = -0.1f;
 				m_weatherEffect.Add(location, Instantiate(m_electrifyPrefab, world, Quaternion.identity));
 
-				//// Spawn the lightningStrike
-				//world.z = -0.2f;
-				//Instantiate(m_LightningStrike, world, Quaternion.identity);
+				// Spawn the lightningStrike
+				world.z = -0.2f;
+				Instantiate(m_LightningStrike, world, Quaternion.identity);
 
 			}
 		}
