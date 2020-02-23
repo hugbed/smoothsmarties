@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class GameController : MonoBehaviour
 {
@@ -54,8 +55,17 @@ public class GameController : MonoBehaviour
         if (turn == 0)
         {
             weather.StartForecasting();
-            var go = GameObject.Find("NumberTilemap");
-            go.SetActive(false);
+
+            // Hide numbers
+            {
+                var go = GameObject.Find("NumberTilemap");
+                go.SetActive(false);
+            }
+            //// Show Burn
+            {
+                var go = GameObject.Find("BuildingsTilemap");
+                go.GetComponent<Tilemap>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+            }
         }
 
         if (turn >= 0 && turn < numberOfTurns)
