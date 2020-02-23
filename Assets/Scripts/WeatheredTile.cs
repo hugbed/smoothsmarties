@@ -1,9 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public enum Weather { Clear, Cloudy, Stormy, Lightning };
+public enum Weather { Clear, Cloudy, Stormy };
 
 [CreateAssetMenu]
 public class WeatheredTile : TileBase
@@ -27,7 +28,7 @@ public class WeatheredTile : TileBase
 			return;
 		}
 
-		switch (GetWeather(location, tilemap))
+		switch (GetForecast(location, tilemap))
 		{
 			case Weather.Cloudy:
 				tileData.sprite = m_cloudy;
@@ -35,13 +36,16 @@ public class WeatheredTile : TileBase
 			case Weather.Stormy:
 				tileData.sprite = m_stormy;
 				break;
-			case Weather.Lightning:
-				tileData.sprite = m_lightning;
-				break;
 			default: // Default to clear
 			case Weather.Clear:
 				tileData.sprite = m_clear;
 				break;
+		}
+
+		// TODO: Switch to effect instead of changing sprite
+		if (IsStruckByLightning(location, tilemap))
+		{
+			tileData.sprite = m_lightning;
 		}
 	}
 
@@ -50,27 +54,52 @@ public class WeatheredTile : TileBase
 		return toLow + ((toHigh - toLow) / (fromHigh - fromLow)) * (value - fromLow);
 	}
 
-	private Weather GetWeather(Vector3Int location, ITilemap itilemap)
+	private WeatherControl GetWeatherFromTilemap(ITilemap tilemap)
+	{
+		return tilemap.GetComponent<Tilemap>()
+			.transform.parent.gameObject
+			.GetComponentInChildren<WeatherControl>();
+	}
+
+	private Nullable<Vector3Int> CellToNoise(Vector3Int location, ITilemap tilemap)
 	{
 		if (name == "WOutsideTile" || name == "WCasernTile")
-			return Weather.Clear; // Y fait tout le temps beau sul bord pis a caserne
+			return null; // These tiles are reserved (not really part of the board)
 
-		var tilemap = itilemap.GetComponent<Tilemap>();
-		var weather = tilemap.transform.parent.gameObject
-			.GetComponentInChildren<WeatherControl>();
-
+		var weather = GetWeatherFromTilemap(tilemap);
 		if (weather == null)
-			return Weather.Clear; // No weather control instance while in editor
+			return null; // No weather control instance while in editor
 
 		if (!weather.IsForecasting())
-			return Weather.Clear; // No weather display during setup phase
+			return null; // No weather display during setup phase
 
 		// Convert from tilemap to noise map coordinates
 		var bounds = tilemap.cellBounds;
 		var converted = new Vector3Int();
 		converted.x = MapRange(location.x, bounds.min.x, bounds.max.x, 0, weather.noiseWidth);
 		converted.y = MapRange(location.y, bounds.min.y, bounds.max.y, 0, weather.noiseHeight);
+		return converted;
+	}
 
-		return weather.GetWeather(converted);
+	private bool IsStruckByLightning(Vector3Int location, ITilemap tilemap)
+	{
+		var noiseLocation = CellToNoise(location, tilemap);
+		if (noiseLocation.HasValue)
+		{
+			var weather = GetWeatherFromTilemap(tilemap);
+			return weather.IsStruckByLightning(noiseLocation.Value);
+		}
+		return false;
+	}
+
+	private Weather GetForecast(Vector3Int location, ITilemap tilemap)
+	{
+		var noiseLocation = CellToNoise(location, tilemap);
+		if (noiseLocation.HasValue)
+		{
+			var weather = GetWeatherFromTilemap(tilemap);
+			return weather.GetForecast(noiseLocation.Value);
+		}
+		return Weather.Clear;
 	}
 }

@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 2852570929148193026, guid: fe8b60851f4239a458a48e77be3e4efe,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.1
+      value: -0.44
       objectReference: {fileID: 0}
     - target: {fileID: 5587623014821004900, guid: fe8b60851f4239a458a48e77be3e4efe,
         type: 3}
@@ -2967,5 +2967,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 727b7c2af517f9c44a439c7133994eb1,
         type: 3}
+    - target: {fileID: 7488665586501474142, guid: fe8b60851f4239a458a48e77be3e4efe,
+        type: 3}
+      propertyPath: cloudyThresh
+      value: 0.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 7488665586501474142, guid: fe8b60851f4239a458a48e77be3e4efe,
+        type: 3}
+      propertyPath: stormyThresh
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7488665586501474142, guid: fe8b60851f4239a458a48e77be3e4efe,
+        type: 3}
+      propertyPath: lightningTresh
+      value: 0.68
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe8b60851f4239a458a48e77be3e4efe, type: 3}
