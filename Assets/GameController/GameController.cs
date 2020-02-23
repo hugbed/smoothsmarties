@@ -41,6 +41,11 @@ public class GameController : MonoBehaviour
         ui.showBeginButton(true);
     }
 
+    public void quit()
+    {
+        Application.Quit();
+    }
+
     public void nextTurn()
     {
         WeatheredTile.ClearWeatherEffect();
