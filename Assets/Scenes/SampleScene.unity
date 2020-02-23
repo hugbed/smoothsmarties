@@ -227,7 +227,7 @@ PrefabInstance:
         type: 3}
       propertyPath: boardPrefabs.Array.data[1]
       value: 
-      objectReference: {fileID: 1625296759409882574, guid: 5537824401d24f545941c8f1c7d0b4aa,
+      objectReference: {fileID: 1625296759409882574, guid: c3a1de5f583328d48ab6259a835761bc,
         type: 3}
     - target: {fileID: 1352771555183022602, guid: 6fd55f3edb0da0849ac301f022b28a80,
         type: 3}
@@ -304,6 +304,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 420329452679753438, guid: 1717be357c8104344830a2f904237e99,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1422563206598125161, guid: 1717be357c8104344830a2f904237e99,
         type: 3}
       propertyPath: holdEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
