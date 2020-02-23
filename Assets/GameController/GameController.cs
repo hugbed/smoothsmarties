@@ -13,6 +13,7 @@ public class GameController : MonoBehaviour
 
     private int prefabIndex = 0;
     public List<GameObject> boardPrefabs = new List<GameObject>();
+    private int currentLoopIndex = -1;
 
     private GameObject boardInstance = null;
 
@@ -34,7 +35,8 @@ public class GameController : MonoBehaviour
 
         AudioController.GetSource("/Audio/GenericButton").Play();
         StartCoroutine(AudioController.FadeOut(AudioController.GetSource("/Audio/MenuLoop"), 0.1f));
-        StartCoroutine(AudioController.FadeIn(AudioController.GetSource("/Audio/InGameLoop"), 0.1f));
+        currentLoopIndex = prefabIndex + 1;
+        StartCoroutine(AudioController.FadeIn(AudioController.GetSource("/Audio/InGameLoop" + currentLoopIndex), 0.1f));
 
         if (boardInstance != null)
         {
@@ -107,7 +109,7 @@ public class GameController : MonoBehaviour
 
     public void returnToMenu()
     {
-        StartCoroutine(AudioController.FadeOut(AudioController.GetSource("/Audio/InGameLoop"), 0.1f));
+        StartCoroutine(AudioController.FadeOut(AudioController.GetSource("/Audio/InGameLoop" + currentLoopIndex), 0.1f));
         StartCoroutine(AudioController.FadeIn(AudioController.GetSource("/Audio/MenuLoop"), 0.1f));
         ui.showGameEnd(false);
         ui.showMenu(true);
