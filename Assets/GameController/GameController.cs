@@ -19,6 +19,8 @@ public class GameController : MonoBehaviour
 
     public void newGame()
     {
+        AudioController.GetSource("/Audio/GenericButton").Play();
+
         if (boardInstance != null)
         {
             Destroy(boardInstance);
@@ -43,6 +45,7 @@ public class GameController : MonoBehaviour
 
     public void quit()
     {
+        AudioController.GetSource("/Audio/GenericButton").Play();
         Application.Quit();
     }
 

@@ -23,9 +23,10 @@ public class HoldButton : MonoBehaviour
 
     // Update is called once per frame
 
-    
     public void beginHold()
     {
+        AudioController.GetSource("/Audio/HoldButton").Play();
+
         time = 0.0;
         holding = true;
 
@@ -40,6 +41,8 @@ public class HoldButton : MonoBehaviour
 
         holdProgressImage.fillAmount = 1.0f;
         holdProgressImage.gameObject.SetActive(false);
+
+        StartCoroutine(AudioController.FadeOut(AudioController.GetSource("/Audio/HoldButton"), 0.01F));
     }
 
     void Update()
