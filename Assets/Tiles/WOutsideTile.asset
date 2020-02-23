@@ -19,4 +19,5 @@ MonoBehaviour:
   m_lightning: {fileID: 0}
   m_electrifyPrefab: {fileID: 1103608289558563750, guid: 7ba726dfe7587fc408dd3c354b4a05bb,
     type: 3}
-  test: {fileID: 1103608289558563750, guid: 9595e2a4f003aae408a7770f382cf7d0, type: 3}
+  m_LightningStrike: {fileID: 1103608289558563750, guid: 9595e2a4f003aae408a7770f382cf7d0,
+    type: 3}
