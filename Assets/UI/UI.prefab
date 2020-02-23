@@ -1115,6 +1115,8 @@ GameObject:
   - component: {fileID: 1928213981617886914}
   - component: {fileID: 4203001201525161744}
   - component: {fileID: 1052376441727991131}
+  - component: {fileID: 4957970713425513809}
+  - component: {fileID: 1422563206598125161}
   m_Layer: 5
   m_Name: BeginButton
   m_TagString: Untagged
@@ -1139,7 +1141,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.73381555, y: 0}
   m_AnchorMax: {x: 0.73381555, y: 0}
-  m_AnchoredPosition: {x: 0.56048584, y: 0}
+  m_AnchoredPosition: {x: 0.5605469, y: 0}
   m_SizeDelta: {x: 588.7, y: 470.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1928213981617886914
@@ -1219,6 +1221,65 @@ MonoBehaviour:
   m_Interactable: 1
   m_TargetGraphic: {fileID: 4203001201525161744}
   m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &4957970713425513809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3249629450816982754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1422563206598125161}
+          m_MethodName: beginHold
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1422563206598125161}
+          m_MethodName: endHold
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &1422563206598125161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3249629450816982754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7208da50c93e4cf4db387920a049f26e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holdTime: 0.7
+  holdEvent:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
@@ -1319,6 +1380,8 @@ GameObject:
   - component: {fileID: 3190648907798836070}
   - component: {fileID: 963382331119678645}
   - component: {fileID: 3036552177498364796}
+  - component: {fileID: 3542688086629336442}
+  - component: {fileID: 423540217993328750}
   m_Layer: 5
   m_Name: QuitButton
   m_TagString: Untagged
@@ -1424,6 +1487,22 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 963382331119678645}
   m_OnClick:
     m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &3542688086629336442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4141444737430349285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7208da50c93e4cf4db387920a049f26e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holdTime: 0.7
+  holdEvent:
+    m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
         m_MethodName: returnToMenu
@@ -1436,6 +1515,49 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &423540217993328750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4141444737430349285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3542688086629336442}
+          m_MethodName: beginHold
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3542688086629336442}
+          m_MethodName: endHold
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &4151885744865304076
 GameObject:
   m_ObjectHideFlags: 0
@@ -1898,6 +2020,8 @@ GameObject:
   - component: {fileID: 6922310508428652487}
   - component: {fileID: 1731495165258198225}
   - component: {fileID: 2924987621782249404}
+  - component: {fileID: 8221761555249307511}
+  - component: {fileID: 4186302295453844183}
   m_Layer: 5
   m_Name: NextRoundButton
   m_TagString: Untagged
@@ -1922,7 +2046,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.73381555, y: 0}
   m_AnchorMax: {x: 0.73381555, y: 0}
-  m_AnchoredPosition: {x: 0.28009033, y: 0}
+  m_AnchoredPosition: {x: 0.2800293, y: 0}
   m_SizeDelta: {x: 588.7, y: 470.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6922310508428652487
@@ -2003,6 +2127,22 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1731495165258198225}
   m_OnClick:
     m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &8221761555249307511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6206988310123335673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7208da50c93e4cf4db387920a049f26e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holdTime: 0.7
+  holdEvent:
+    m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
         m_MethodName: nextTurn
@@ -2015,6 +2155,49 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4186302295453844183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6206988310123335673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8221761555249307511}
+          m_MethodName: beginHold
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8221761555249307511}
+          m_MethodName: endHold
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &6646428742561868241
 GameObject:
   m_ObjectHideFlags: 0
@@ -2026,7 +2209,7 @@ GameObject:
   - component: {fileID: 5733638203177872115}
   - component: {fileID: 7592306056935465209}
   - component: {fileID: 5562593893754943435}
-  - component: {fileID: 2885246964609606019}
+  - component: {fileID: 6107394870210312990}
   m_Layer: 5
   m_Name: StartButton
   m_TagString: Untagged
@@ -2090,7 +2273,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2885246964609606019
+--- !u!114 &6107394870210312990
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2108,7 +2291,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
