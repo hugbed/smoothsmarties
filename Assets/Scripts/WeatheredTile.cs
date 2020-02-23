@@ -45,8 +45,8 @@ public class WeatheredTile : TileBase
 
 	private Weather GetWeather(Vector3Int location, ITilemap itilemap)
 	{
-		if (name == "WOutsideTile")
-			return Weather.Clear; // Y fait tout le temps beau sul bord
+		if (name == "WOutsideTile" || name == "WCasernTile")
+			return Weather.Clear; // Y fait tout le temps beau sul bord pis a caserne
 
 		var tilemap = itilemap.GetComponent<Tilemap>();
 		var weather = tilemap.transform.parent.gameObject
@@ -54,6 +54,9 @@ public class WeatheredTile : TileBase
 
 		if (weather == null)
 			return Weather.Clear; // No weather control instance while in editor
+
+		if (!weather.IsForecasting())
+			return Weather.Clear; // No weather display during setup phase
 
 		// Convert from tilemap to noise map coordinates
 		var bounds = tilemap.cellBounds;

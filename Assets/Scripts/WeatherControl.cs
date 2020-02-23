@@ -13,6 +13,7 @@ public class WeatherControl : MonoBehaviour
 
 	private Texture2D noiseTex;
 	private Color[] noisePix;
+	private Color[] previousNoisePix;
 	private Renderer noiseRenderer;
 
 	public Vector2 noiseStep = new Vector2(1.0F, 1.0F);
@@ -22,11 +23,14 @@ public class WeatherControl : MonoBehaviour
 	public float stormyThresh;
 	public float lightningTresh;
 
+	private bool forecasting = false;
+
 	void Awake()
 	{
 		noiseRenderer = GetComponent<Renderer>();
 		noiseTex = new Texture2D(noiseWidth, noiseHeight);
 		noisePix = new Color[noiseTex.width * noiseTex.height];
+		previousNoisePix = new Color[noiseTex.width * noiseTex.height];
 		noiseRenderer.material.mainTexture = noiseTex;
 		ComputeNoise(); // Compute initial noise texture
 	}
@@ -40,6 +44,10 @@ public class WeatherControl : MonoBehaviour
 			float x = 0.0F;
 			while (x < noiseTex.width)
 			{
+				// Keep a snapshot of the pixel data
+				var previousColor = noisePix[(int)y * noiseTex.width + (int)x];
+				previousNoisePix[(int)y * noiseTex.width + (int)x] = new Color(previousColor.r, previousColor.g, previousColor.b);
+
 				float xCoord = noiseOrigin.x + x / noiseTex.width * noiseScale;
 				float yCoord = noiseOrigin.y + y / noiseTex.height * noiseScale;
 				float sample = Mathf.PerlinNoise(xCoord, yCoord);
@@ -54,19 +62,18 @@ public class WeatherControl : MonoBehaviour
 		noiseTex.Apply();
 	}
 
-	Color SampleTex(Vector3Int location)
+	Color SamplePixData(Vector3Int location)
 	{
-		if (noisePix == null)
+		if (previousNoisePix == null)
 			return new Color(0.0f, 0.0f, 0.0f); // May not be initialized in editor
 
-		return noisePix[location.y * noiseTex.width + location.x];
+		return previousNoisePix[location.y * noiseTex.width + location.x];
 	}
 
 	public Weather GetWeather(Vector3Int location)
 	{
-		// Determine the weather forecast
 		Weather forecast = Weather.Clear;
-		float value = SampleTex(location).r;
+		float value = SamplePixData(location).r;
 
 		if (value > lightningTresh)
 		{
@@ -89,5 +96,15 @@ public class WeatherControl : MonoBehaviour
 		noiseOrigin.x += noiseStep.x;
 		noiseOrigin.y += noiseStep.y;
 		ComputeNoise();
+	}
+
+	public void StartForecasting()
+	{
+		forecasting = true;
+	}
+
+	public bool IsForecasting()
+	{
+		return forecasting;
 	}
 }

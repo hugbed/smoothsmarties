@@ -27,16 +27,26 @@ public class GameController : MonoBehaviour
 
         turn = -1;
 
-        nextTurn();
+        ui.setTurnNumberText(0, numberOfTurns);
 
         ui.showGameEnd(false);
         ui.showMenu(false);
         ui.showGameUI(true);
+
+        ui.showNextTurnButton(false);
+        ui.showBeginButton(true);
     }
 
     public void nextTurn()
     {
         turn++;
+
+        var weather = boardInstance.GetComponentInChildren<WeatherControl>(true);
+        if (turn == 0)
+        {
+            // FIXME: First turn nothing happens
+            weather.StartForecasting();
+        }
 
         if (turn >= 0 && turn < numberOfTurns)
         {
@@ -51,7 +61,6 @@ public class GameController : MonoBehaviour
         }
         else
         {
-            var weather = boardInstance.GetComponentInChildren<WeatherControl>(true);
             weather.Step();
         }
     }
@@ -66,5 +75,12 @@ public class GameController : MonoBehaviour
         {
             Destroy(boardInstance);
         }
+    }
+
+    public void beginGamePhase()
+    {
+        nextTurn();
+        ui.showNextTurnButton(true);
+        ui.showBeginButton(false);
     }
 }

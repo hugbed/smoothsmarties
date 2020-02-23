@@ -97,7 +97,7 @@ MonoBehaviour:
   noiseHeight: 100
   noiseOrigin: {x: 0, y: 0}
   noiseScale: 7
-  noiseStep: {x: 0.25, y: -0.25}
+  noiseStep: {x: 1, y: -1}
   cloudyThresh: 0.4
   stormyThresh: 0.45
   lightningTresh: 0.47
