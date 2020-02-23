@@ -22,8 +22,9 @@ public class GameController : MonoBehaviour
 
     public void newGame()
     {
-        StartCoroutine(AudioController.FadeOut(AudioController.GetSource("/Audio/MenuLoop"), 0.1f));
         AudioController.GetSource("/Audio/GenericButton").Play();
+        StartCoroutine(AudioController.FadeOut(AudioController.GetSource("/Audio/MenuLoop"), 0.1f));
+        StartCoroutine(AudioController.FadeIn(AudioController.GetSource("/Audio/InGameLoop"), 0.1f));
 
         if (boardInstance != null)
         {
@@ -96,7 +97,8 @@ public class GameController : MonoBehaviour
 
     public void returnToMenu()
     {
-        AudioController.GetSource("/Audio/MenuLoop").Play();
+        StartCoroutine(AudioController.FadeOut(AudioController.GetSource("/Audio/InGameLoop"), 0.1f));
+        StartCoroutine(AudioController.FadeIn(AudioController.GetSource("/Audio/MenuLoop"), 0.1f));
         ui.showGameEnd(false);
         ui.showMenu(true);
         ui.showGameUI(false);
