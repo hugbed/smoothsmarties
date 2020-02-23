@@ -44,7 +44,6 @@ public class GameController : MonoBehaviour
         var weather = boardInstance.GetComponentInChildren<WeatherControl>(true);
         if (turn == 0)
         {
-            // FIXME: First turn nothing happens
             weather.StartForecasting();
         }
 

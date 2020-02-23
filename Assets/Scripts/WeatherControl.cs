@@ -8,7 +8,7 @@ public class WeatherControl : MonoBehaviour
 	// Noise generation
 	public int noiseWidth = 100;
 	public int noiseHeight = 100;
-	public Vector2 noiseOrigin;
+	private Vector2 noiseOrigin;
 	public float noiseScale = 1.0F;
 
 	private Texture2D noiseTex;
@@ -27,17 +27,22 @@ public class WeatherControl : MonoBehaviour
 
 	void Awake()
 	{
+		// Randomize noise origin
+		noiseOrigin.x = (Random.value - 0.5F) * 4096;
+		noiseOrigin.y = (Random.value - 0.5F) * 4096;
+
+		// Setup noise rendering
 		noiseRenderer = GetComponent<Renderer>();
 		noiseTex = new Texture2D(noiseWidth, noiseHeight);
 		noisePix = new Color[noiseTex.width * noiseTex.height];
 		previousNoisePix = new Color[noiseTex.width * noiseTex.height];
 		noiseRenderer.material.mainTexture = noiseTex;
+
 		ComputeNoise(); // Compute initial noise texture
 	}
 
 	private void ComputeNoise()
 	{
-		// For each pixel in the texture...
 		float y = 0.0F;
 		while (y < noiseTex.height)
 		{
@@ -56,8 +61,6 @@ public class WeatherControl : MonoBehaviour
 			}
 			y++;
 		}
-
-		// Copy the pixel data to the texture and load it into the GPU.
 		noiseTex.SetPixels(noisePix);
 		noiseTex.Apply();
 	}
