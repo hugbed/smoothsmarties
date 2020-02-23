@@ -34,11 +34,13 @@ public class WeatheredTile : TileBase
 
 	public override void GetTileData(Vector3Int location, ITilemap itilemap, ref TileData tileData)
 	{
+#if UNITY_EDITOR
 		if (Application.isPlaying == false)
 		{
 			tileData.sprite = m_editor;
 			return;
 		}
+#endif
 
 		switch (GetForecast(location, itilemap))
 		{
