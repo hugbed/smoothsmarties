@@ -232,7 +232,7 @@ PrefabInstance:
         type: 3}
       propertyPath: boardPrefabs.Array.data[1]
       value: 
-      objectReference: {fileID: 8219944885263757223, guid: 898e9227470431e489b915204e823c8d,
+      objectReference: {fileID: 1625296759409882574, guid: c3a1de5f583328d48ab6259a835761bc,
         type: 3}
     - target: {fileID: 1352771555183022602, guid: 6fd55f3edb0da0849ac301f022b28a80,
         type: 3}

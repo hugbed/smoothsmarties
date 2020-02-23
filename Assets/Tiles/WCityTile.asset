@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f06c1cb0b18b643b68387fb00076be6e, type: 3}
   m_Name: WCityTile
   m_EditorClassIdentifier: 
+  m_editor: {fileID: 21300000, guid: b6377fb258ac91c40905da5846017b7e, type: 3}
   m_clear: {fileID: 0}
-  m_cloudy: {fileID: 0}
-  m_stormy: {fileID: 0}
-  m_lightning: {fileID: 0}
+  m_cloudy: {fileID: 21300000, guid: 59b8d42e87075e34bb31066cd1aecda6, type: 3}
+  m_stormy: {fileID: 21300000, guid: 1ed5b699ec0a5c04cb5eada035967a11, type: 3}
+  m_lightning: {fileID: 21300000, guid: 08efac1f3161e154c9fe3a21d5110d25, type: 3}

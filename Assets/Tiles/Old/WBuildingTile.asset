@@ -10,10 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f06c1cb0b18b643b68387fb00076be6e, type: 3}
-  m_Name: WOutsideTile
+  m_Name: WBuildingTile
   m_EditorClassIdentifier: 
-  m_editor: {fileID: 21300000, guid: 4b1253591e78aa34fae5edfd566b3265, type: 3}
-  m_clear: {fileID: 0}
-  m_cloudy: {fileID: 0}
-  m_stormy: {fileID: 0}
-  m_lightning: {fileID: 0}
+  m_clear: {fileID: 21300000, guid: 49e29587e7458184994d8276e6cc1caf, type: 3}
+  m_cloudy: {fileID: 21300000, guid: fadf1bfb4c03d5b47932796d84f16488, type: 3}
+  m_stormy: {fileID: 21300000, guid: ac0f45b702d01ec4bada4213036192d5, type: 3}
+  m_lightning: {fileID: 21300000, guid: bfcc9d61ee2a2ab4f9597830d06f12c6, type: 3}

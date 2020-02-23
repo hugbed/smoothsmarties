@@ -8,6 +8,7 @@ public enum Weather { Clear, Cloudy, Stormy, Lightning };
 [CreateAssetMenu]
 public class WeatheredTile : TileBase
 {
+	public Sprite m_editor;
 	public Sprite m_clear;
 	public Sprite m_cloudy;
 	public Sprite m_stormy;
@@ -20,6 +21,12 @@ public class WeatheredTile : TileBase
 
 	public override void GetTileData(Vector3Int location, ITilemap tilemap, ref TileData tileData)
 	{
+		if (Application.isPlaying == false)
+		{
+			tileData.sprite = m_editor;
+			return;
+		}
+
 		switch (GetWeather(location, tilemap))
 		{
 			case Weather.Cloudy:
