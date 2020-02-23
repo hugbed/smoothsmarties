@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -15,6 +16,10 @@ public class GameController : MonoBehaviour
 
     private GameObject boardInstance = null;
 
+    // Set to false when you're happy
+    public bool updateSeed = false; 
+    public int seed = 0;
+
     void Start()
     {
         AudioController.GetSource("/Audio/MenuLoop").Play();
@@ -22,6 +27,11 @@ public class GameController : MonoBehaviour
 
     public void newGame()
     {
+        if (updateSeed && prefabIndex % 3 == 0)
+            seed++;
+
+        Random.InitState(seed);
+
         AudioController.GetSource("/Audio/GenericButton").Play();
         StartCoroutine(AudioController.FadeOut(AudioController.GetSource("/Audio/MenuLoop"), 0.1f));
         StartCoroutine(AudioController.FadeIn(AudioController.GetSource("/Audio/InGameLoop"), 0.1f));
