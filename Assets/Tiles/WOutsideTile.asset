@@ -17,3 +17,5 @@ MonoBehaviour:
   m_cloudy: {fileID: 0}
   m_stormy: {fileID: 0}
   m_lightning: {fileID: 0}
+  m_electrifyPrefab: {fileID: 1103608289558563750, guid: 5fe6f63c7b9ed0d4b881c784561b83f6,
+    type: 3}

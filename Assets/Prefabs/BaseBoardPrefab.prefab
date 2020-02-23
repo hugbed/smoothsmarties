@@ -97,9 +97,9 @@ MonoBehaviour:
   noiseHeight: 100
   noiseScale: 7
   noiseStep: {x: 1, y: -1}
-  cloudyThresh: 0.4
-  stormyThresh: 0.25
-  lightningTresh: 0.9
+  cloudyThresh: 0.48
+  stormyThresh: 0.57
+  lightningTresh: 0.6
 --- !u!1 &6598554070264521999
 GameObject:
   m_ObjectHideFlags: 0
