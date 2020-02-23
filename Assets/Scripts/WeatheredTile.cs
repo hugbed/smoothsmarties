@@ -18,11 +18,11 @@ public class WeatheredTile : TileBase
 	static private Dictionary<Vector3, GameObject> m_weatherEffect = new Dictionary<Vector3, GameObject>();
 
 	static public void ClearWeatherEffect()
-    {
-		foreach(var weatherEffect in m_weatherEffect.Values)
-        {
+	{
+		foreach (var weatherEffect in m_weatherEffect.Values)
+		{
 			DestroyImmediate(weatherEffect);
-        }
+		}
 		m_weatherEffect.Clear();
 	}
 
@@ -53,12 +53,10 @@ public class WeatheredTile : TileBase
 				break;
 		}
 
-		// TODO: Switch to effect instead of changing sprite
 		if (IsStruckByLightning(location, itilemap))
 		{
-			//tileData.sprite = m_lightning;
 			if ( !m_weatherEffect.ContainsKey(location) )
-            {
+			{
 				var tilemap = itilemap.GetComponent<Tilemap>();
 				var world = tilemap.CellToWorld(location);
 				world.z = -0.1f;

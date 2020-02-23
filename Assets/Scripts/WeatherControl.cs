@@ -66,20 +66,12 @@ public class WeatherControl : MonoBehaviour
 		noiseTex.Apply();
 	}
 
-	Color SamplePixData(Vector3Int location)
+	private Color SamplePixData(Vector3Int location, ref Color[] pixData)
 	{
-		if (noisePix == null)
+		if (pixData == null)
 			return new Color(0.0f, 0.0f, 0.0f); // May not be initialized in editor
 
-		return noisePix[location.y * noiseTex.width + location.x];
-	}
-
-	Color SamplePreviousPixData(Vector3Int location)
-	{
-		if (previousNoisePix == null)
-			return new Color(0.0f, 0.0f, 0.0f); // May not be initialized in editor
-
-		return previousNoisePix[location.y * noiseTex.width + location.x];
+		return pixData[location.y * noiseTex.width + location.x];
 	}
 
 	public bool IsStruckByLightning(Vector3Int location)
@@ -88,7 +80,7 @@ public class WeatherControl : MonoBehaviour
 		Assert.IsTrue(stormyThresh > cloudyThresh);
 
 		// Use previous forecast data to determine the most potential candidates for lightning
-		float value = SamplePreviousPixData(location).r;
+		float value = SamplePixData(location, ref previousNoisePix).r;
 		return value > lightningTresh;
 	}
 
@@ -98,7 +90,7 @@ public class WeatherControl : MonoBehaviour
 		Assert.IsTrue(stormyThresh > cloudyThresh);
 
 		Weather forecast = Weather.Clear;
-		float value = SamplePixData(location).r;
+		float value = SamplePixData(location, ref noisePix).r;
 
 		if (value > stormyThresh)
 		{
