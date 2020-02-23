@@ -15,6 +15,7 @@ public class WeatheredTile : TileBase
 	public Sprite m_stormy;
 	public Sprite m_lightning;
 	public GameObject m_electrifyPrefab;
+	public GameObject m_LightningStrike;
 	static private Dictionary<Vector3, GameObject> m_weatherEffect = new Dictionary<Vector3, GameObject>();
 
 	static public void ClearWeatherEffect()
@@ -59,8 +60,15 @@ public class WeatheredTile : TileBase
 			{
 				var tilemap = itilemap.GetComponent<Tilemap>();
 				var world = tilemap.CellToWorld(location);
+
+				// Spawn the electrified effect on top of the tile
 				world.z = -0.1f;
 				m_weatherEffect.Add(location, Instantiate(m_electrifyPrefab, world, Quaternion.identity));
+
+				// Spawn the lightningStrike
+				world.z = -0.2f;
+				Instantiate(m_LightningStrike, world, Quaternion.identity);
+
 			}
 		}
 	}

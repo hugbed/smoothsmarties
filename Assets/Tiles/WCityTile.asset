@@ -17,5 +17,7 @@ MonoBehaviour:
   m_cloudy: {fileID: 21300000, guid: 59b8d42e87075e34bb31066cd1aecda6, type: 3}
   m_stormy: {fileID: 21300000, guid: 1ed5b699ec0a5c04cb5eada035967a11, type: 3}
   m_lightning: {fileID: 21300000, guid: 08efac1f3161e154c9fe3a21d5110d25, type: 3}
-  m_electrifyPrefab: {fileID: 1103608289558563750, guid: 5fe6f63c7b9ed0d4b881c784561b83f6,
+  m_electrifyPrefab: {fileID: 1103608289558563750, guid: 7ba726dfe7587fc408dd3c354b4a05bb,
+    type: 3}
+  m_LightningStrike: {fileID: 1103608289558563750, guid: 9595e2a4f003aae408a7770f382cf7d0,
     type: 3}
