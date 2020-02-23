@@ -28,7 +28,7 @@ public class WeatheredTile : TileBase
 			return;
 		}
 
-		switch (GetWeather(location, tilemap))
+		switch (GetForecast(location, tilemap))
 		{
 			case Weather.Cloudy:
 				tileData.sprite = m_cloudy;
@@ -54,15 +54,19 @@ public class WeatheredTile : TileBase
 		return toLow + ((toHigh - toLow) / (fromHigh - fromLow)) * (value - fromLow);
 	}
 
+	private WeatherControl GetWeatherFromTilemap(ITilemap tilemap)
+	{
+		return tilemap.GetComponent<Tilemap>()
+			.transform.parent.gameObject
+			.GetComponentInChildren<WeatherControl>();
+	}
+
 	private Nullable<Vector3Int> CellToNoise(Vector3Int location, ITilemap tilemap)
 	{
 		if (name == "WOutsideTile" || name == "WCasernTile")
-			return null; // Y fait tout le temps beau sul bord pis a caserne
+			return null; // These tiles are reserved (not really part of the board)
 
-		var weather = tilemap.GetComponent<Tilemap>()
-				.transform.parent.gameObject
-				.GetComponentInChildren<WeatherControl>();
-
+		var weather = GetWeatherFromTilemap(tilemap);
 		if (weather == null)
 			return null; // No weather control instance while in editor
 
@@ -82,23 +86,19 @@ public class WeatheredTile : TileBase
 		var noiseLocation = CellToNoise(location, tilemap);
 		if (noiseLocation.HasValue)
 		{
-			var weather = tilemap.GetComponent<Tilemap>()
-				.transform.parent.gameObject
-				.GetComponentInChildren<WeatherControl>();
+			var weather = GetWeatherFromTilemap(tilemap);
 			return weather.IsStruckByLightning(noiseLocation.Value);
 		}
 		return false;
 	}
 
-	private Weather GetWeather(Vector3Int location, ITilemap tilemap)
+	private Weather GetForecast(Vector3Int location, ITilemap tilemap)
 	{
 		var noiseLocation = CellToNoise(location, tilemap);
 		if (noiseLocation.HasValue)
 		{
-			var weather = tilemap.GetComponent<Tilemap>()
-				.transform.parent.gameObject
-				.GetComponentInChildren<WeatherControl>();
-			return weather.GetWeather(noiseLocation.Value);
+			var weather = GetWeatherFromTilemap(tilemap);
+			return weather.GetForecast(noiseLocation.Value);
 		}
 		return Weather.Clear;
 	}

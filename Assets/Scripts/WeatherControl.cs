@@ -88,7 +88,7 @@ public class WeatherControl : MonoBehaviour
 		return value > lightningTresh;
 	}
 
-	public Weather GetWeather(Vector3Int location)
+	public Weather GetForecast(Vector3Int location)
 	{
 		Weather forecast = Weather.Clear;
 		float value = SamplePixData(location).r;
