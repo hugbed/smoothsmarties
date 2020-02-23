@@ -3,7 +3,13 @@ guid: f06c1cb0b18b643b68387fb00076be6e
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - m_clear: {instanceID: 0}
+  - m_cloudy: {instanceID: 0}
+  - m_stormy: {instanceID: 0}
+  - m_lightning: {instanceID: 0}
+  - m_electrifyPrefab: {fileID: 1103608289558563750, guid: 5fe6f63c7b9ed0d4b881c784561b83f6,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

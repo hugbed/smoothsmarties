@@ -22,6 +22,9 @@ public class GameController : MonoBehaviour
         {
             Destroy(boardInstance);
         }
+
+        WeatheredTile.ClearWeatherEffect();
+
         boardInstance = Instantiate(boardPrefabs[prefabIndex]);
         prefabIndex = (prefabIndex + 1) % boardPrefabs.Count;
 
@@ -39,6 +42,7 @@ public class GameController : MonoBehaviour
 
     public void nextTurn()
     {
+        WeatheredTile.ClearWeatherEffect();
         turn++;
 
         var weather = boardInstance.GetComponentInChildren<WeatherControl>(true);
