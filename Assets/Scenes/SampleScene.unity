@@ -204,7 +204,7 @@ PrefabInstance:
     - target: {fileID: 1352771555183022602, guid: 6fd55f3edb0da0849ac301f022b28a80,
         type: 3}
       propertyPath: boardPrefabs.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1352771555183022602, guid: 6fd55f3edb0da0849ac301f022b28a80,
         type: 3}
