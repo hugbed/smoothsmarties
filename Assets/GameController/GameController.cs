@@ -61,7 +61,7 @@ public class GameController : MonoBehaviour
                 var go = GameObject.Find("NumberTilemap");
                 go.SetActive(false);
             }
-            //// Show Burn
+            // Show Burn
             {
                 var go = GameObject.Find("BuildingsTilemap");
                 go.GetComponent<Tilemap>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
