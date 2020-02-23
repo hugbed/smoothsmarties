@@ -14,13 +14,24 @@ public class WeatheredTile : TileBase
 	public Sprite m_cloudy;
 	public Sprite m_stormy;
 	public Sprite m_lightning;
+	public GameObject m_electrifyPrefab;
+	static private Dictionary<Vector3, GameObject> m_weatherEffect = new Dictionary<Vector3, GameObject>();
+
+	static public void ClearWeatherEffect()
+    {
+		foreach(var weatherEffect in m_weatherEffect.Values)
+        {
+			DestroyImmediate(weatherEffect);
+        }
+		m_weatherEffect.Clear();
+	}
 
 	public override void RefreshTile(Vector3Int location, ITilemap tilemap)
 	{
 		tilemap.RefreshTile(location);
 	}
 
-	public override void GetTileData(Vector3Int location, ITilemap tilemap, ref TileData tileData)
+	public override void GetTileData(Vector3Int location, ITilemap itilemap, ref TileData tileData)
 	{
 		if (Application.isPlaying == false)
 		{
@@ -28,7 +39,7 @@ public class WeatheredTile : TileBase
 			return;
 		}
 
-		switch (GetForecast(location, tilemap))
+		switch (GetForecast(location, itilemap))
 		{
 			case Weather.Cloudy:
 				tileData.sprite = m_cloudy;
@@ -43,9 +54,16 @@ public class WeatheredTile : TileBase
 		}
 
 		// TODO: Switch to effect instead of changing sprite
-		if (IsStruckByLightning(location, tilemap))
+		if (IsStruckByLightning(location, itilemap))
 		{
-			tileData.sprite = m_lightning;
+			//tileData.sprite = m_lightning;
+			if ( !m_weatherEffect.ContainsKey(location) )
+            {
+				var tilemap = itilemap.GetComponent<Tilemap>();
+				var world = tilemap.CellToWorld(location);
+				world.z = -0.1f;
+				m_weatherEffect.Add(location, Instantiate(m_electrifyPrefab, world, Quaternion.identity));
+			}
 		}
 	}
 

@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-5097853520283918468
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ElectrifiedTile
+  m_Shader: {fileID: -6465566751694194690, guid: 1bfa8d5565b655b4382a6719fc859718,
+    type: 3}
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - Texture2D_82AF6793:
+        m_Texture: {fileID: 2800000, guid: 49e29587e7458184994d8276e6cc1caf, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - Boolean_89511CB6: 1
+    - Vector1_38BBA70F: 2
+    - Vector1_5FC81240: 20
+    - Vector1_63F979FC: 0.5
+    - Vector1_B4EE84E7: 1
+    m_Colors:
+    - Color_479960E6: {r: 0, g: 0, b: 1, a: 1}
+    - Color_9C37C518: {r: 0, g: 3.56487, b: 3.56487, a: 1}
+    - Vector2_77BD4871: {r: 0.5, g: 0, b: 0, a: 0}
+    - Vector2_F14EB2B6: {r: 0, g: 0.5, b: 0, a: 0}
