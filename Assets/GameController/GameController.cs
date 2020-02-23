@@ -45,6 +45,8 @@ public class GameController : MonoBehaviour
         if (turn == 0)
         {
             weather.StartForecasting();
+            var go = GameObject.Find("NumberTilemap");
+            go.SetActive(false);
         }
 
         if (turn >= 0 && turn < numberOfTurns)
