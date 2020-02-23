@@ -9,8 +9,10 @@ public class GameController : MonoBehaviour
     private int turn = 0;
     public int numberOfTurns = 10;
 
-    public GameObject boardPrefab;
-    private GameObject boardInstance;
+    private int prefabIndex = 0;
+    public List<GameObject> boardPrefabs = new List<GameObject>();
+
+    private GameObject boardInstance = null;
 
     // Start is called before the first frame update
 
@@ -18,10 +20,11 @@ public class GameController : MonoBehaviour
     {
         if (boardInstance != null)
         {
-            GameObject.Destroy(boardInstance);
+            Destroy(boardInstance);
         }
-        boardInstance = GameObject.Instantiate(boardPrefab);
-        
+        boardInstance = Instantiate(boardPrefabs[prefabIndex]);
+        prefabIndex = (prefabIndex + 1) % boardPrefabs.Count;
+
         turn = -1;
 
         ui.setTurnNumberText(0, numberOfTurns);
@@ -41,8 +44,9 @@ public class GameController : MonoBehaviour
         var weather = boardInstance.GetComponentInChildren<WeatherControl>(true);
         if (turn == 0)
         {
-            // FIXME: First turn nothing happens
             weather.StartForecasting();
+            var go = GameObject.Find("NumberTilemap");
+            go.SetActive(false);
         }
 
         if (turn >= 0 && turn < numberOfTurns)
@@ -70,7 +74,7 @@ public class GameController : MonoBehaviour
 
         if (boardInstance != null)
         {
-            GameObject.Destroy(boardInstance);
+            Destroy(boardInstance);
         }
     }
 
