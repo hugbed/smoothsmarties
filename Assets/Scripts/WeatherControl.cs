@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.Assertions;
 
 public class WeatherControl : MonoBehaviour
 {
@@ -65,7 +66,7 @@ public class WeatherControl : MonoBehaviour
 		noiseTex.Apply();
 	}
 
-	Color SamplePreviousPixData(Vector3Int location)
+	Color SamplePixData(Vector3Int location)
 	{
 		if (noisePix == null)
 			return new Color(0.0f, 0.0f, 0.0f); // May not be initialized in editor
@@ -73,7 +74,7 @@ public class WeatherControl : MonoBehaviour
 		return noisePix[location.y * noiseTex.width + location.x];
 	}
 
-	Color SamplePixData(Vector3Int location)
+	Color SamplePreviousPixData(Vector3Int location)
 	{
 		if (previousNoisePix == null)
 			return new Color(0.0f, 0.0f, 0.0f); // May not be initialized in editor
@@ -83,6 +84,9 @@ public class WeatherControl : MonoBehaviour
 
 	public bool IsStruckByLightning(Vector3Int location)
 	{
+		Assert.IsTrue(lightningTresh > stormyThresh);
+		Assert.IsTrue(stormyThresh > cloudyThresh);
+
 		// Use previous forecast data to determine the most potential candidates for lightning
 		float value = SamplePreviousPixData(location).r;
 		return value > lightningTresh;
@@ -90,6 +94,9 @@ public class WeatherControl : MonoBehaviour
 
 	public Weather GetForecast(Vector3Int location)
 	{
+		Assert.IsTrue(lightningTresh > stormyThresh);
+		Assert.IsTrue(stormyThresh > cloudyThresh);
+
 		Weather forecast = Weather.Clear;
 		float value = SamplePixData(location).r;
 
