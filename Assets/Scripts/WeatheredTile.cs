@@ -38,9 +38,9 @@ public class WeatheredTile : TileBase
 		}
 	}
 
-	private int Convert(int input, int in_min, int in_max, int out_min, int out_max)
+	private int MapRange(int value, int fromLow, int fromHigh, int toLow, int toHigh)
 	{
-		return out_min + ((out_max - out_min) / (in_max - in_min)) * (input - in_min);
+		return toLow + ((toHigh - toLow) / (fromHigh - fromLow)) * (value - fromLow);
 	}
 
 	private Weather GetWeather(Vector3Int location, ITilemap itilemap)
@@ -61,8 +61,8 @@ public class WeatheredTile : TileBase
 		// Convert from tilemap to noise map coordinates
 		var bounds = tilemap.cellBounds;
 		var converted = new Vector3Int();
-		converted.x = Convert(location.x, bounds.min.x, bounds.max.x, 0, weather.noiseWidth);
-		converted.y = Convert(location.y, bounds.min.y, bounds.max.y, 0, weather.noiseHeight);
+		converted.x = MapRange(location.x, bounds.min.x, bounds.max.x, 0, weather.noiseWidth);
+		converted.y = MapRange(location.y, bounds.min.y, bounds.max.y, 0, weather.noiseHeight);
 
 		return weather.GetWeather(converted);
 	}
