@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f06c1cb0b18b643b68387fb00076be6e, type: 3}
   m_Name: WOutsideTile
   m_EditorClassIdentifier: 
-  m_clear: {fileID: 21300000, guid: 4b1253591e78aa34fae5edfd566b3265, type: 3}
-  m_cloudy: {fileID: 21300000, guid: 0e2049103cb15a14299dc2815b630707, type: 3}
-  m_stormy: {fileID: 21300000, guid: 97ad11a11a694784a8b88bdb35f20097, type: 3}
-  m_lightning: {fileID: 21300000, guid: 5c88cdb4db1f9d44f9637e955cc35f66, type: 3}
-  m_weatherControl: {fileID: 0}
+  m_clear: {fileID: 0}
+  m_cloudy: {fileID: 0}
+  m_stormy: {fileID: 0}
+  m_lightning: {fileID: 0}
