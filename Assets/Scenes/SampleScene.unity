@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -319,6 +319,16 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1193051507}
+    - target: {fileID: 1422563206598125161, guid: 1717be357c8104344830a2f904237e99,
+        type: 3}
+      propertyPath: holdEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1193051507}
+    - target: {fileID: 1422563206598125161, guid: 1717be357c8104344830a2f904237e99,
+        type: 3}
+      propertyPath: holdEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: beginGamePhase
+      objectReference: {fileID: 0}
     - target: {fileID: 1668973885954920159, guid: 1717be357c8104344830a2f904237e99,
         type: 3}
       propertyPath: m_Name
@@ -409,10 +419,40 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3542688086629336442, guid: 1717be357c8104344830a2f904237e99,
+        type: 3}
+      propertyPath: holdEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1193051507}
+    - target: {fileID: 3542688086629336442, guid: 1717be357c8104344830a2f904237e99,
+        type: 3}
+      propertyPath: holdEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: returnToMenu
+      objectReference: {fileID: 0}
     - target: {fileID: 4324421624096854871, guid: 1717be357c8104344830a2f904237e99,
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0.2800293
+      objectReference: {fileID: 0}
+    - target: {fileID: 6107394870210312990, guid: 1717be357c8104344830a2f904237e99,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1193051507}
+    - target: {fileID: 6107394870210312990, guid: 1717be357c8104344830a2f904237e99,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: newGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 8221761555249307511, guid: 1717be357c8104344830a2f904237e99,
+        type: 3}
+      propertyPath: holdEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1193051507}
+    - target: {fileID: 8221761555249307511, guid: 1717be357c8104344830a2f904237e99,
+        type: 3}
+      propertyPath: holdEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: nextTurn
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1717be357c8104344830a2f904237e99, type: 3}
