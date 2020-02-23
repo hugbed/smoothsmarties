@@ -9,9 +9,10 @@ public class TilemapRefresher : MonoBehaviour
 	void Start()
 	{
 		tilemap = GetComponent<Tilemap>();
+		tilemap.RefreshAllTiles();
 	}
 
-	void Update()
+	public void Step()
 	{
 		tilemap.RefreshAllTiles();
 	}

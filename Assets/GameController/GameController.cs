@@ -82,6 +82,8 @@ public class GameController : MonoBehaviour
         else
         {
             weather.Step();
+            var refresher = boardInstance.GetComponentInChildren<TilemapRefresher>(true);
+            refresher.Step();
         }
     }
 
